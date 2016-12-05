@@ -16,7 +16,7 @@
 - name: Ensure configured MAS apps are installed.
   command: mas install "{{ item }}"
   with_items: "{{ mas_installed_app_ids }}"
-  when: "{{ item }} not in mas_list.stdout"
+  when: "'{{ item }}' not in mas_list.stdout"
 
 - name: Upgrade all apps (if configured).
   command: mas upgrade

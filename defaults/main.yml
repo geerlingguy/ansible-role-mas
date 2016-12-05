@@ -3,7 +3,9 @@ mas_email: ""
 mas_password: ""
 
 mas_installed_app_ids:
-  # Xcode (7.0).
-  - 497799835
+  - 425264550 # Blackmagic Disk Speed Test (3.0)
+  - 411643860 # DaisyDisk (4.3.2)
+  - 498486288 # Quick Resizer (1.9)
+  - 497799835 # Xcode (8.1)
 
 mas_upgrade_all_apps: no

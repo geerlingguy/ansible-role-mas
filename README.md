@@ -25,6 +25,7 @@ If you leave both blank, and don't prompt for them, the role assumes you've alre
     mas_installed_app_ids:
       - 425264550 # Blackmagic Disk Speed Test (3.0)
       - 411643860 # DaisyDisk (4.3.2)
+      - 498486288 # Quick Resizer (1.9)
       - 497799835 # Xcode (8.1)
 
 A list of apps to ensure are installed on the computer. You can get IDs for all your existing installed apps with `mas list`, and you can search for IDs with `mas search [App Name]`.
