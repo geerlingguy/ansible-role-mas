@@ -1,0 +1,24 @@
+---
+homebrew_repo: https://github.com/Homebrew/brew
+
+homebrew_prefix: /usr/local
+homebrew_install_path: "{{ homebrew_prefix }}/Homebrew"
+homebrew_brew_bin_path: /usr/local/bin
+
+homebrew_installed_packages:
+  - ssh-copy-id
+  - pv
+
+homebrew_upgrade_all_packages: no
+
+homebrew_taps:
+  - homebrew/core
+  - caskroom/cask
+
+homebrew_cask_apps:
+  - firefox
+
+homebrew_cask_appdir: /Applications
+
+homebrew_use_brewfile: true
+homebrew_brewfile_dir: '~'
