@@ -1,29 +1,23 @@
 ---
-- name: Mac Apple Store | Ensure MAS is installed
-  homebrew:
-    name: mas
-    state: present
+- name: Ensure MAS is installed.
+  homebrew: name=mas state=present
 
-- name: Mac Apple Store | Signing out
-  shell: "mas signout"
-  register: mac_account
-  when: app_store_email is defined and app_store_email != '' and app_store_password is defined and app_store_password != ''
+- name: Sign in to MAS when email and password are provided.
+  shell: 'mas signin "{{ mas_email }}" "{{ mas_password }}"'
+  register: mas_signin_result
+  when: mas_email != '' and mas_password != ''
 
-- name: Mac Apple Store | Signing in.
-  shell: "mas signin \"{{ app_store_email }}\" \"{{ app_store_password }}\""
-  register: result
-  when: app_store_email is defined and app_store_email != '' and app_store_password is defined and app_store_password != '' and mac_account is defined
+- name: List installed MAS apps.
+  command: mas list
+  register: mas_list
+  always_run: yes
+  changed_when: false
 
-- name: Mac Apple Store | Install apps.
-  shell: mas list | grep "{{ item.id }}" || mas install "{{ item.id }}"
-  with_items: "{{ mac_store_apps }}"
-  register: result
-  changed_when: result.stdout.find('Installed') != -1
-  when: app_store_email is defined and app_store_email != '' and app_store_password is defined and app_store_password != '' and mac_account is defined
+- name: Ensure configured MAS apps are installed.
+  command: mas install "{{ item }}"
+  with_items: "{{ mas_installed_app_ids }}"
+  when: "{{ item }} not in mas_list.stdout"
 
-- name: Mac Apple Store | Upgrade apps.
-  shell: mas list | grep "{{ item.id }}" || mas upgrade "{{ item.id }}"
-  with_items: "{{ mac_store_apps }}"
-  register: result
-  changed_when: result.stdout.find('Installed') != -1
-  when: app_store_email is defined and app_store_email != '' and app_store_password is defined and app_store_password != '' and mac_account is defined
+- name: Upgrade all apps (if configured).
+  command: mas upgrade
+  when: mas_upgrade_all_apps
