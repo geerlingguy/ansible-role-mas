@@ -2,10 +2,16 @@
 - name: Ensure MAS is installed.
   homebrew: name=mas state=present
 
+- name: Get MAS account status
+  shell: 'mas account'
+  register: mas_account_result
+  failed_when: mas_account_result.rc > 1
+  changed_when: false
+
 - name: Sign in to MAS when email and password are provided.
   shell: 'mas signin "{{ mas_email }}" "{{ mas_password }}"'
   register: mas_signin_result
-  when: mas_email != '' and mas_password != ''
+  when: mas_account_result.rc == 1 and mas_email != '' and mas_password != ''
 
 - name: List installed MAS apps.
   command: mas list
