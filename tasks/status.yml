@@ -1,0 +1,12 @@
+---
+
+- name: Get account status.
+  shell: 'mas account'
+  register: mas_account_status
+  failed_when: false
+  always_run: yes
+  changed_when: false
+
+- name: Get signin status.
+  set_fact:
+    mas_is_signed_in: "{{ 'Not signed in' not in mas_account_status.stdout }}"
