@@ -22,13 +22,13 @@ If setting these variables statically (e.g. in an included vars file), you shoul
 
 If you leave both blank, and don't prompt for them, the role assumes you've already signed in via other means (e.g. via GUI or `mas signin [email]`), and will not attempt to sign in again.
 
-    mas_installed_app_ids:
-      - 425264550 # Blackmagic Disk Speed Test (3.0)
-      - 411643860 # DaisyDisk (4.3.2)
-      - 498486288 # Quick Resizer (1.9)
-      - 497799835 # Xcode (8.1)
+    mas_installed_apps:
+      - { id: 425264550, name: "Blackmagic Disk Speed Test (3.0)" }
+      - { id: 411643860, name: "DaisyDisk (4.3.2)" }
+      - { id: 498486288, name: "Quick Resizer (1.9)" }
+      - { id: 497799835, name: "Xcode (8.1)" }
 
-A list of apps to ensure are installed on the computer. You can get IDs for all your existing installed apps with `mas list`, and you can search for IDs with `mas search [App Name]`.
+A list of apps to ensure are installed on the computer. You can get IDs for all your existing installed apps with `mas list`, and you can search for IDs with `mas search [App Name]`. The `name` attribute is not authoritative and only used to provide better information in the playbook output.
 
     mas_upgrade_all_apps: no
 

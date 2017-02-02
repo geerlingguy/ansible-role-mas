@@ -3,6 +3,7 @@
 
   vars:
     mas_installed_app_ids: []
+    mas_installed_apps: []
 
   roles:
     - geerlingguy.homebrew
