@@ -18,7 +18,7 @@
 
 - name: Fail if still not signed in.
   fail:
-    msg: "You must be signed into the Mac App Store to install apps"
+    msg: "You must be signed into the Mac App Store to install apps."
   when: not mas_is_signed_in and not mas_is_testing
 
 - name: List installed MAS apps.
