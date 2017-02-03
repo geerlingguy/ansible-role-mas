@@ -4,6 +4,7 @@
   vars:
     mas_installed_app_ids: []
     mas_installed_apps: []
+    mas_is_testing: yes
 
   roles:
     - geerlingguy.homebrew

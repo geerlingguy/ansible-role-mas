@@ -2,16 +2,24 @@
 - name: Ensure MAS is installed.
   homebrew: name=mas state=present
 
-- name: Get MAS account status
-  shell: 'mas account'
-  register: mas_account_result
-  failed_when: mas_account_result.rc > 1
-  changed_when: false
+- include: status.yml
 
-- name: Sign in to MAS when email and password are provided.
-  shell: 'mas signin "{{ mas_email }}" "{{ mas_password }}"'
-  register: mas_signin_result
-  when: mas_account_result.rc == 1 and mas_email != '' and mas_password != ''
+- name: Sign in interactively.
+  shell: mas signin "{{ mas_email }}" --dialog
+  when: not mas_is_signed_in and not mas_password and mas_sign_in_interactively and not mas_is_testing
+  failed_when: false
+
+- name: Sign in with email and password.
+  shell: mas signin "{{ mas_email }}" "{{ mas_password }}"
+  when: not mas_is_signed_in and mas_email and mas_password
+
+- include: status.yml
+  when: not mas_is_signed_in
+
+- name: Fail if still not signed in.
+  fail:
+    msg: "You must be signed into the Mac App Store to install apps."
+  when: not mas_is_signed_in and not mas_is_testing
 
 - name: List installed MAS apps.
   command: mas list

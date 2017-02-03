@@ -15,10 +15,11 @@ Available variables are listed below, along with default values (see `defaults/m
 
     mas_email: ""
     mas_password: ""
+    mas_sign_in_interactively: no
 
 The credentials for your Mac App Store account. The Apps you install should already be purchased by/registered to this account.
 
-If setting these variables statically (e.g. in an included vars file), you should encrypt the inventory using [Ansible Vault](http://docs.ansible.com/ansible/playbooks_vault.html). Otherwise you can use [`vars_prompt`](http://docs.ansible.com/ansible/playbooks_prompts.html) to prompt for the password at playbook runtime.
+If setting these variables statically (e.g. in an included vars file), you should encrypt the inventory using [Ansible Vault](http://docs.ansible.com/ansible/playbooks_vault.html). Otherwise you can toggle the `mas_sign_in_interactively` variable, or use [`vars_prompt`](http://docs.ansible.com/ansible/playbooks_prompts.html) to prompt for the password at playbook runtime.
 
 If you leave both blank, and don't prompt for them, the role assumes you've already signed in via other means (e.g. via GUI or `mas signin [email]`), and will not attempt to sign in again.
 
