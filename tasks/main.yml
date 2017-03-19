@@ -11,7 +11,12 @@
 - name: Sign in to MAS when email and password are provided.
   shell: 'mas signin "{{ mas_email }}" "{{ mas_password }}"'
   register: mas_signin_result
-  when: mas_account_result.rc == 1 and mas_email != '' and mas_password != ''
+  when: mas_account_result.rc == 1 and mas_email != '' and mas_password != '' and not mas_signin_dialog
+
+- name: Sign in to MAS when email is provided, and complete password and 2FA using dialog.
+  shell: 'mas signin "{{ mas_email }}" "{{ mas_password }}" --dialog'
+  register: mas_signin_result
+  when: mas_signin_dialog and mas_account_result.rc == 1 and mas_email != ''
 
 - name: List installed MAS apps.
   command: mas list

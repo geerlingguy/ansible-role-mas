@@ -22,6 +22,10 @@ If setting these variables statically (e.g. in an included vars file), you shoul
 
 If you leave both blank, and don't prompt for them, the role assumes you've already signed in via other means (e.g. via GUI or `mas signin [email]`), and will not attempt to sign in again.
 
+    mas_signin_dialog: no
+
+Fallback to the built-in Mac App Store dialog to complete sign in. If set to yes, you must specify the aforementioned `mas_email` variable which will be autofilled in the dialog and prompt you to enter your password, followed by the 2FA authorization code if enabled on the account.
+
     mas_installed_apps:
       - { id: 425264550, name: "Blackmagic Disk Speed Test (3.0)" }
       - { id: 411643860, name: "DaisyDisk (4.3.2)" }
@@ -42,10 +46,11 @@ Whether to run `mas upgrade`, which will upgrade all installed Mac App Store app
 
     - hosts: localhost
       vars:
-        mas_installed_app_ids:
-          - 497799835 # Xcode (8.1)
+        mas_installed_apps:
+          - { id: 497799835, name: "Xcode (8.1)" }
       roles:
         - geerlingguy.homebrew
+        - geerlingguy.mas
 
 See the [Mac Development Ansible Playbook](https://github.com/geerlingguy/mac-dev-playbook) for an example of this role's usage.
 
