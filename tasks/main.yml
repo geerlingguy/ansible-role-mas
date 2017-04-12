@@ -21,7 +21,7 @@
 - name: List installed MAS apps.
   command: mas list
   register: mas_list
-  always_run: yes
+  check_mode: no
   changed_when: false
 
 - name: Ensure configured MAS apps are installed.
