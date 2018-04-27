@@ -27,7 +27,7 @@ before_install:
   - source .venv/bin/activate
   - pip install ansible
   - python -c "import ssl; print(ssl.OPENSSL_VERSION)"
-  - ansible-galaxy install -r requirements.yml -p ./roles
+  - ansible-galaxy install -r tests/requirements.yml -p ./roles
   - deactivate
 
   # Uninstall existing brew installation.
@@ -63,9 +63,6 @@ install:
   - "echo -e '[local]\nlocalhost ansible_connection=local' | sudo tee -a /etc/ansible/hosts > /dev/null"
 
 script:
-  # Install role dependencies.
-  - "ansible-galaxy install -r tests/requirements.yml"
-
   # Check the role/playbook's syntax.
   - "ansible-playbook tests/test.yml --syntax-check"
 
