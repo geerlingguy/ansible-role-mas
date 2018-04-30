@@ -12,9 +12,6 @@ matrix:
     # Sierra (10.12)
     - os: osx
       osx_image: xcode9.2
-    # El Capitan (10.11)
-    - os: osx
-      osx_image: xcode8
 
 before_install:
   # Install role dependencies. Do this here, using newer OpenSSL version and a
