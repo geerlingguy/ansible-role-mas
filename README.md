@@ -6,12 +6,16 @@ Installs [mas](https://github.com/mas-cli/mas) on macOS, and installs macOS apps
 
 ## Requirements
 
-  - **Homebrew**: Requires `homebrew` already installed (you can use `geerlingguy.homebrew` to install it on your Mac).
+  - **Homebrew** or **MacPorts**: Requires `homebrew` or `macports` already installed (you can use `geerlingguy.homebrew` to install it on your Mac).
   - **Mac App Store account**: You can either sign into the Mac App Store via the GUI before running this role, or you can set the `mas_email` and `mas_password` prior to running the role. For security reasons, if you're going to use this role to sign in, you should use `vars_prompt` for at least the password; don't store unencrypted passwords with your playbooks!
 
 ## Role Variables
 
 Available variables are listed below, along with default values (see `defaults/main.yml`):
+
+    mas_package_manager: homebrew
+
+The package manager to use to install mas.  Can be "homebrew", "macports", or anything else to disable automatic installation of mas.
 
     mas_email: ""
     mas_password: ""
@@ -40,7 +44,7 @@ Whether to run `mas upgrade`, which will upgrade all installed Mac App Store app
 
 ## Dependencies
 
-  - (Soft dependency) `geerlingguy.homebrew`
+  - (Soft dependency) `geerlingguy.homebrew` unless mas_package_manager is set to macports
 
 ## Example Playbook
 

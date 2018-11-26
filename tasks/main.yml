@@ -1,6 +1,11 @@
 ---
 - name: Ensure MAS is installed.
   homebrew: name=mas state=present
+  when: mas_package_manager == 'homebrew'
+
+- name: Ensure MAS is installed.
+  macports: name=mas state=present
+  when: mas_package_manager == 'macports'
 
 - name: Get MAS account status
   command: mas account

@@ -1,4 +1,5 @@
 ---
+mas_package_manager: homebrew
 mas_email: ""
 mas_password: ""
 mas_installed_app_ids: [] # Deprecated
