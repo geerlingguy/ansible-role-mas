@@ -13,8 +13,8 @@
   register: mas_signin_result
   when:
     - mas_account_result.rc == 1
-    - mas_email
-    - mas_password
+    - mas_email | bool
+    - mas_password | bool
     - not mas_signin_dialog
 
 - name: Sign in to MAS when email is provided, and complete password and 2FA using dialog.
@@ -23,12 +23,12 @@
   when:
     - mas_signin_dialog
     - mas_account_result.rc == 1
-    - mas_email
+    - mas_email | bool
 
 - name: List installed MAS apps.
   command: mas list
   register: mas_list
-  check_mode: no
+  check_mode: false
   changed_when: false
 
 - name: Ensure configured MAS apps are installed.

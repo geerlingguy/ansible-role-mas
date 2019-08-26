@@ -22,7 +22,7 @@ If setting these variables statically (e.g. in an included vars file), you shoul
 
 If you leave both blank, and don't prompt for them, the role assumes you've already signed in via other means (e.g. via GUI or `mas signin [email]`), and will not attempt to sign in again.
 
-    mas_signin_dialog: no
+    mas_signin_dialog: false
 
 Fallback to the built-in Mac App Store dialog to complete sign in. If set to yes, you must specify the aforementioned `mas_email` variable which will be autofilled in the dialog and prompt you to enter your password, followed by the 2FA authorization code if enabled on the account.
 
@@ -34,7 +34,7 @@ Fallback to the built-in Mac App Store dialog to complete sign in. If set to yes
 
 A list of apps to ensure are installed on the computer. You can get IDs for all your existing installed apps with `mas list`, and you can search for IDs with `mas search [App Name]`. The `name` attribute is not authoritative and only used to provide better information in the playbook output.
 
-    mas_upgrade_all_apps: no
+    mas_upgrade_all_apps: false
 
 Whether to run `mas upgrade`, which will upgrade all installed Mac App Store apps.
 

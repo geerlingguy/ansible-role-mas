@@ -8,5 +8,5 @@ mas_installed_apps:
   - { id: 498486288, name: "Quick Resizer (1.9)" }
   - { id: 497799835, name: "Xcode (8.1)" }
 
-mas_upgrade_all_apps: no
-mas_signin_dialog: no
+mas_upgrade_all_apps: false
+mas_signin_dialog: false
