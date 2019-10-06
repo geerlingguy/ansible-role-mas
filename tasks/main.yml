@@ -31,6 +31,12 @@
   check_mode: false
   changed_when: false
 
+- name: Ensure configured MAS apps are uninstalled.
+  become: yes
+  command: mas uninstall "{{ item.id }}"
+  with_items: "{{ mas_uninstalled_apps }}"
+  when: (item.id | string) in mas_list.stdout
+
 - name: Ensure configured MAS apps are installed.
   command: mas install "{{ item.id|default(item) }}"
   with_items: "{{ mas_installed_apps + mas_installed_app_ids }}"

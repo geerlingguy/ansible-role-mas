@@ -34,6 +34,10 @@ Fallback to the built-in Mac App Store dialog to complete sign in. If set to yes
 
 A list of apps to ensure are installed on the computer. You can get IDs for all your existing installed apps with `mas list`, and you can search for IDs with `mas search [App Name]`. The `name` attribute is not authoritative and only used to provide better information in the playbook output.
 
+    mas_uninstalled_apps: []
+
+A list of apps to ensure are uninstalled on the computer. IDs can be determined using `mas list`.
+
     mas_upgrade_all_apps: false
 
 Whether to run `mas upgrade`, which will upgrade all installed Mac App Store apps.
