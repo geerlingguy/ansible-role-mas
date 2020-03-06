@@ -3,9 +3,12 @@ sudo: required
 language: objective-c
 
 # Reference for OS X Versions:
-# https://docs.travis-ci.com/user/reference/osx/#OS-X-Version
+# https://docs.travis-ci.com/user/reference/osx/#macos-version
 matrix:
   include:
+    # Mojave (10.14)
+    - os: osx
+      osx_image: xcode11.2
     # High Sierra (10.13)
     - os: osx
       osx_image: xcode10.1
@@ -15,9 +18,9 @@ before_install:
   # virtualenv because older macOS versions will fail with the system version of
   # OpenSSL and Python if done later.
   - brew upgrade openssl || brew install openssl || true
-  - brew upgrade python2 || brew install python2 || true
+  - brew upgrade python3 || brew install python3 || true
   - sudo -H pip install -U virtualenv
-  - virtualenv --python=/usr/local/bin/python2.7 .venv
+  - virtualenv --python=/usr/local/bin/python3 .venv
   - source .venv/bin/activate
   - pip install ansible
   - python -c "import ssl; print(ssl.OPENSSL_VERSION)"
@@ -32,7 +35,6 @@ before_install:
   - sudo rm -rf /usr/local/Caskroom
   - sudo rm -rf /usr/local/bin/brew
 
-install:
   # Get macOS version string.
   - macos_version=$(sw_vers -productVersion)
 
@@ -45,6 +47,15 @@ install:
       curl https://bootstrap.pypa.io/get-pip.py | sudo python
     fi
 
+  # Unset git protocol.version to resolve issue with xcode10.1 (10.13) build.
+  - |
+    if [[ "$macos_version" == 10.13.* ]]; then
+      echo "Unsetting git config protocol.version"
+      git config --global --unset protocol.version
+      git config --list --show-origin
+    fi
+
+install:
   # Install Ansible.
   - sudo -H pip install ansible
 
