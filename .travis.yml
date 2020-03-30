@@ -14,17 +14,12 @@ matrix:
       osx_image: xcode10.1
 
 before_install:
-  # TODO: Remove this after the following issue is fixed:
-  # https://travis-ci.community/t/missed-pip-after-xcode-image-update/7802
-  - sudo easy_install pip
-  - pip install --upgrade pip
-
   # Install role dependencies. Do this here, using newer OpenSSL version and a
   # virtualenv because older macOS versions will fail with the system version of
   # OpenSSL and Python if done later.
   - brew upgrade openssl || brew install openssl || true
   - brew upgrade python3 || brew install python3 || true
-  - sudo -H pip install -U virtualenv
+  - sudo -H pip3 install -U virtualenv
   - virtualenv --python=/usr/local/bin/python3 .venv
   - source .venv/bin/activate
   - pip install ansible
