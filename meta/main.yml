@@ -2,11 +2,12 @@
 dependencies: []
 
 galaxy_info:
+  role_name: mas
   author: geerlingguy
   description: Mac App Store CLI installation for macOS
   company: "Midwestern Mac, LLC"
   license: "license (BSD, MIT)"
-  min_ansible_version: 2.2
+  min_ansible_version: 2.4
   platforms:
     - name: GenericUNIX
       versions:
