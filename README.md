@@ -34,6 +34,21 @@ Fallback to the built-in Mac App Store dialog to complete sign in. If set to yes
 
 A list of apps to ensure are installed on the computer. You can get IDs for all your existing installed apps with `mas list`, and you can search for IDs with `mas search [App Name]`. The `name` attribute is not authoritative and only used to provide better information in the playbook output.
 
+    mas_installed_apps_list_file: "./my-desired-mas-apps.cvs"
+
+
+The path to a CSV list file of desired apps that will be merged with the content of the `mas_installed_apps` variable.
+
+    mas list | sed 's/ /,/' > "./my-desired-mas-apps.cvs"
+
+    # example content: id,name
+    926036361,LastPass (4.4.0)
+    1462114288,Grammarly for Safari (9.17)
+    1153157709,Speedtest (1.15)
+    418343177,Analog (2.0)
+
+The CSV file of the MAS apps currently installed in a system can be obtained with the above command.
+
     mas_upgrade_all_apps: false
 
 Whether to run `mas upgrade`, which will upgrade all installed Mac App Store apps.

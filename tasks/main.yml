@@ -26,6 +26,27 @@
     - mas_account_result.rc == 1
     - mas_email | bool
 
+- block:
+  - name: Read list of desired MAS apps from CSV file.
+    read_csv:
+      path: "{{ mas_installed_apps_list_file }}"
+      fieldnames: id,name
+      delimiter: ','
+    register: mas_desired_apps
+    ignore_errors: yes
+
+  - name: Merge the list of desired MAS apps.
+    set_fact: mas_installed_apps={{ mas_installed_apps|default([]) | union(mas_desired_apps.list) }}
+    when: mas_desired_apps is defined
+
+  - name: Remove duplicates of desired MAS apps.
+    set_fact:
+      mas_installed_apps: "{{ mas_installed_apps | unique | list }}"
+    ignore_errors: yes
+  # end block
+  when:  mas_installed_apps_list_file is defined and mas_installed_apps_list_file != ''
+  delegate_to: localhost
+
 - name: List installed MAS apps.
   command: mas list
   register: mas_list
