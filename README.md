@@ -39,7 +39,7 @@ A list of apps to ensure are installed on the computer. You can get IDs for all 
 
 The path to a CSV list file of desired apps that will be merged with the content of the `mas_installed_apps` variable.
 
-    mas list | sed 's/ /,/' > "./my-desired-mas-apps.cvs"
+    mas list | sed 's/ /,/' > "./my-desired-mas-apps.csv"
 
     # example content: id,name
     926036361,LastPass (4.4.0)
