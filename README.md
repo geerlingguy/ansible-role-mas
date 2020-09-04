@@ -34,7 +34,7 @@ Fallback to the built-in Mac App Store dialog to complete sign in. If set to yes
 
 A list of apps to ensure are installed on the computer. You can get IDs for all your existing installed apps with `mas list`, and you can search for IDs with `mas search [App Name]`. The `name` attribute is not authoritative and only used to provide better information in the playbook output.
 
-    mas_installed_apps_list_file: "./my-desired-mas-apps.cvs"
+    mas_installed_apps_list_file: "./my-desired-mas-apps.csv"
 
 
 The path to a CSV list file of desired apps that will be merged with the content of the `mas_installed_apps` variable.
