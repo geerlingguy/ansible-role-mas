@@ -35,29 +35,14 @@ before_install:
   - sudo rm -rf /usr/local/Caskroom
   - sudo rm -rf /usr/local/bin/brew
 
-  # Get macOS version string.
-  - macos_version=$(sw_vers -productVersion)
-
-  # Install pip (macOS version dependent).
-  - |
-    if [[ "$macos_version" == 10.13.* ]]; then
-      sudo easy_install pip
-    else
-      # See: https://stackoverflow.com/a/49748494/100134
-      curl https://bootstrap.pypa.io/get-pip.py | sudo python
-    fi
-
-  # Unset git protocol.version to resolve issue with xcode10.1 (10.13) build.
-  - |
-    if [[ "$macos_version" == 10.13.* ]]; then
-      echo "Unsetting git config protocol.version"
-      git config --global --unset protocol.version
-      git config --list --show-origin
-    fi
+  # Install Python 3.
+  - curl "https://www.python.org/ftp/python/3.7.9/python-3.7.9-macosx10.9.pkg" -o "python3.pkg"
+  - sudo installer -pkg python3.pkg -target /
+  - export PATH=/Library/Frameworks/Python.framework/Versions/3.7/bin:$PATH
 
 install:
   # Install Ansible.
-  - sudo -H pip install ansible
+  - sudo -H pip3 install ansible
 
   # Add ansible.cfg to pick up roles path.
   - "{ echo '[defaults]'; echo 'roles_path = ../:../roles:./roles'; } >> ansible.cfg"
