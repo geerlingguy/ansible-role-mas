@@ -10,7 +10,7 @@ name: CI
 
 defaults:
   run:
-    working-directory: 'geerlingguy.homebrew'
+    working-directory: 'geerlingguy.mas'
 
 jobs:
 
@@ -21,7 +21,7 @@ jobs:
       - name: Check out the codebase.
         uses: actions/checkout@v2
         with:
-          path: 'geerlingguy.homebrew'
+          path: 'geerlingguy.mas'
 
       - name: Set up Python 3.
         uses: actions/setup-python@v2
@@ -48,15 +48,7 @@ jobs:
       - name: Check out the codebase.
         uses: actions/checkout@v2
         with:
-          path: 'geerlingguy.homebrew'
-
-      - name: Uninstall GitHub Actions' built-in Homebrew.
-        run: tests/uninstall-homebrew.sh
-
-      - name: Uninstall GitHub Actions' built-in browser installs.
-        run: |
-          sudo rm -rf /Applications/Firefox.app
-          sudo rm -rf /Applications/Google\ Chrome.app
+          path: 'geerlingguy.mas'
 
       - name: Install test dependencies.
         run: sudo pip3 install ansible
@@ -65,7 +57,6 @@ jobs:
         run: |
           cp tests/ansible.cfg ./ansible.cfg
           cp tests/inventory ./inventory
-          ansible-galaxy install -r requirements.yml -p ./roles
 
       - name: Test the playbook's syntax.
         run: ansible-playbook tests/test.yml --syntax-check
