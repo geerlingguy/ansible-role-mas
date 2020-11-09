@@ -1,6 +1,6 @@
 # Ansible Role: Mac App Store CLI (mas)
 
-[![Build Status](https://travis-ci.com/geerlingguy/ansible-role-mas.svg?branch=master)](https://travis-ci.com/geerlingguy/ansible-role-mas)
+[![CI][badge-gh-actions]][link-gh-actions]
 
 Installs [mas](https://github.com/mas-cli/mas) on macOS, and installs macOS apps from the Mac App Store.
 
@@ -61,3 +61,6 @@ MIT / BSD
 ## Author Information
 
 This role was created in 2016 by [Jeff Geerling](https://www.jeffgeerling.com/), author of [Ansible for DevOps](https://www.ansiblefordevops.com/).
+
+[badge-gh-actions]: https://github.com/geerlingguy/ansible-role-mas/workflows/CI/badge.svg?event=push
+[link-gh-actions]: https://github.com/geerlingguy/ansible-role-mas/actions?query=workflow%3ACI

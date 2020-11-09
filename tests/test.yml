@@ -6,5 +6,4 @@
     mas_installed_apps: []
 
   roles:
-    - geerlingguy.homebrew
-    - ansible-role-mas
+    - geerlingguy.mas
