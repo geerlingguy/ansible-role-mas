@@ -10,3 +10,4 @@ mas_installed_apps:
 
 mas_upgrade_all_apps: false
 mas_signin_dialog: false
+mas_binary: /usr/local/bin/mas
