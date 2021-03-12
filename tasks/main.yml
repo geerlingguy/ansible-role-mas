@@ -36,6 +36,8 @@
   command: mas install "{{ item.id|default(item) }}"
   with_items: "{{ mas_installed_apps + mas_installed_app_ids }}"
   when: (item.id | default(item) | string) not in mas_list.stdout
+  async: mas_installation_async
+  poll: mas_installation_poll
 
 - name: Upgrade all apps (if configured).
   command: mas upgrade
