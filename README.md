@@ -1,4 +1,6 @@
-# Ansible Role: Mac App Store CLI (mas)
+# Ansible Role: Mac App Store CLI (mas) (MOVED)
+
+**MOVED**: This role has been moved into the `geerlingguy.mac` collection. Please see [this issue](https://github.com/geerlingguy/ansible-role-mas/issues/31) for a migration guide and more information.
 
 [![CI][badge-gh-actions]][link-gh-actions]
 
